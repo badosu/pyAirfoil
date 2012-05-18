@@ -21,10 +21,10 @@ Uinf = 1
 #FUNCTIONS-------------------------------------
 
 def Zeta(theta):
-	return (cos(theta)+beta)+(sin(theta)+alpha)*1j;
+  return (cos(theta)+beta)+(sin(theta)+alpha)*1j;
 
 def Zhukovsky(zeta):
-	return zeta+a*pow(zeta,-1)
+  return zeta+a*pow(zeta,-1)
 
 #----------------------------------------------
 
@@ -55,13 +55,13 @@ A[N,0]  =  1
 A[N,N-1]= -1
 
 for i in range(N):
-	A[i,N]=1
-	for j in range(N):
-		if i==j :
-			A[i,i]=0.5
-		else:
-			integrand = lambda t: log(abs((z[i]+z[(i+1)%N])/2-Zhukovsky(Zeta(t))))
-			A[i,j] = quad(integrand, theta[j], theta[(j+1)%N])[0]/twopi
+  A[i,N]=1
+  for j in range(N):
+    if i==j :
+      A[i,i]=0.5
+    else:
+      integrand = lambda t: log(abs((z[i]+z[(i+1)%N])/2-Zhukovsky(Zeta(t))))
+      A[i,j] = quad(integrand, theta[j], theta[(j+1)%N])[0]/twopi
 
 
 b = Uinf*(concatenate((y,[0])))
